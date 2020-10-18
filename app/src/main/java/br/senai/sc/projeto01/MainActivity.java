@@ -79,8 +79,8 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         } else if (requestCode == REQUEST_CODE_EXCLUIR_PRODUTO && resultCode == RESULT_CODE_EXCLUIR_PRODUTO) {
-            Produto produtoEditado = (Produto) data.getExtras().getSerializable("produtoExcluido");
-            this.adapterProdutos.remove(produtoEditado);
+            Produto produtoExcluido = (Produto) data.getExtras().getSerializable("produtoExcluido");
+            this.adapterProdutos.remove(produtoExcluido);
         }
         super.onActivityResult(requestCode, resultCode, data);
     }

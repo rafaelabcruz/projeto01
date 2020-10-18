@@ -39,6 +39,7 @@ public class CadastroProdutoActivity extends AppCompatActivity {
             editTextValor.setText(String.valueOf(produto.getValor()));
             edicao = true;
             id = produto.getId();
+            exclusao = true;
         }
     }
 
@@ -69,11 +70,17 @@ public class CadastroProdutoActivity extends AppCompatActivity {
 
     public void onClickExcluir(View v){
 
-        Produto produtoEditado = new Produto(id);
+        EditText editTextNome = findViewById(R.id.editText_nome);
+        EditText editTextValor = findViewById(R.id.editText_valor);
+
+        String nome = editTextNome.getText().toString();
+        Float valor = Float.parseFloat(editTextValor.getText().toString());
+
+        Produto produtoExcluido = new Produto(id, nome, valor);
         Intent intent = new Intent();
 
         if (exclusao == true) {
-            intent.putExtra("produtoExcluido", produtoEditado);
+            intent.putExtra("produtoExcluido", produtoExcluido);
             setResult(RESULT_CODE_EXCLUIR_PRODUTO, intent);
             Toast.makeText(CadastroProdutoActivity.this, "Produto excluído com sucesso!", Toast.LENGTH_LONG).show();
         } else{
