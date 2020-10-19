@@ -110,8 +110,6 @@ public class MainActivity extends AppCompatActivity {
                 if (produto.getId() == produtoExcluido.getId()) {
                     adapterProdutos.remove(produto);
                     break;
-                } else {
-                    Toast.makeText(MainActivity.this, "if nok", Toast.LENGTH_LONG).show();
                 }
             }
             super.onActivityResult(requestCode, resultCode, data);
