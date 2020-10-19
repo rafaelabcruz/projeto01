@@ -76,11 +76,11 @@ public class CadastroProdutoActivity extends AppCompatActivity {
         String nome = editTextNome.getText().toString();
         Float valor = Float.parseFloat(editTextValor.getText().toString());
 
-        Produto produto = new Produto(id, nome, valor);
+        Produto produtoEditado = new Produto(id,nome, valor );
         Intent intent = new Intent();
 
         if (exclusao == true) {
-            intent.putExtra("produtoExcluido", produto);
+            intent.putExtra("produtoExcluido", produtoEditado);
             setResult(RESULT_CODE_EXCLUIR_PRODUTO, intent);
             Toast.makeText(CadastroProdutoActivity.this, "Produto excluído com sucesso!", Toast.LENGTH_LONG).show();
         } else{

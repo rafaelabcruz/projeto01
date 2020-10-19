@@ -45,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
 
         definirOnLongClickListener();
         definirOnClickListenerListView();
+
+
     }
     private void definirOnLongClickListener() {
         listViewProdutos.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
@@ -64,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
                             }
                         })
                         .setNegativeButton("Não", null).show();
-                return false;
+                return true;
             }
         });
     }
@@ -105,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
             Produto produtoExcluido = (Produto) data.getExtras().getSerializable("produtoExcluido");
             for (int i = 0; i < adapterProdutos.getCount(); i++) {
                 Produto produto = adapterProdutos.getItem(i);
-                if (produto.getId() != produtoExcluido.getId()) {
+                if (produto.getId() == produtoExcluido.getId()) {
                     adapterProdutos.remove(produto);
                     break;
                 } else {

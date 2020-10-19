@@ -17,28 +17,34 @@ public class Produto implements Serializable {
     }
 
     public int getId() {
+
         return id;
     }
 
     public void setId(int id) {
+
         this.id = id;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public void setValor(Float valor) {
-        this.valor = valor;
     }
 
     public String getNome() {
         return nome;
     }
 
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
     public Float getValor() {
         return valor;
     }
+
+    public void setValor(Float valor) {
+        this.valor = valor;
+    }
+
+
+
+
 
     @NonNull
     @Override
