@@ -10,13 +10,8 @@ public class Produto implements Serializable {
     private String nome;
     private Float valor;
 
-    public Produto(int id) {
-        this.id = id;
-        this.nome = nome;
-        this.valor = valor;
-    }
-
     public Produto(int id, String nome, Float valor) {
+        this.id = id;
         this.nome = nome;
         this.valor = valor;
     }

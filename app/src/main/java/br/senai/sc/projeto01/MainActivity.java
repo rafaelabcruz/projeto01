@@ -1,8 +1,10 @@
 package br.senai.sc.projeto01;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -21,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
     private final int RESULT_CODE_NOVO_PRODUTO = 10;
     private final int REQUEST_CODE_EDITAR_PRODUTO = 2;
     private final int RESULT_CODE_PRODUTO_EDITADO = 11;
-    private final int REQUEST_CODE_EXCLUIR_PRODUTO = 3;
     private final int RESULT_CODE_EXCLUIR_PRODUTO = 12;
 
     private ListView listViewProdutos;
@@ -42,9 +43,31 @@ public class MainActivity extends AppCompatActivity {
                 Produtos);
         listViewProdutos.setAdapter(adapterProdutos);
 
+        definirOnLongClickListener();
         definirOnClickListenerListView();
     }
-
+    private void definirOnLongClickListener() {
+        listViewProdutos.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                final Produto produtoClicado = adapterProdutos.getItem(position);
+                new AlertDialog.Builder(MainActivity.this)
+                        .setIcon((android.R.drawable.ic_delete))
+                        .setTitle("Excluir")
+                        .setMessage("Deseja realmente excluir?")
+                        .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                adapterProdutos.remove(produtoClicado);
+                                adapterProdutos.notifyDataSetChanged();
+                                Toast.makeText(MainActivity.this, "Produto Excluido!", Toast.LENGTH_LONG).show();
+                            }
+                        })
+                        .setNegativeButton("Não", null).show();
+                return false;
+            }
+        });
+    }
     private void definirOnClickListenerListView() {
         listViewProdutos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
