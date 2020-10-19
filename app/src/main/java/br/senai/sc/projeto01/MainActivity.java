@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         definirOnClickListenerListView();
     }
 
-    private void definirOnClickListenerListView(){
+    private void definirOnClickListenerListView() {
         listViewProdutos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -57,14 +57,14 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void onClickNovoProduto(View v){
+    public void onClickNovoProduto(View v) {
         Intent intent = new Intent(MainActivity.this, CadastroProdutoActivity.class);
         startActivityForResult(intent, REQUEST_CODE_NOVO_PRODUTO);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if (requestCode == REQUEST_CODE_NOVO_PRODUTO && resultCode == RESULT_CODE_NOVO_PRODUTO){
+        if (requestCode == REQUEST_CODE_NOVO_PRODUTO && resultCode == RESULT_CODE_NOVO_PRODUTO) {
             Produto produto = (Produto) data.getExtras().getSerializable("novoProduto");
             produto.setId(++id);
             this.adapterProdutos.add(produto);
@@ -78,10 +78,18 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 }
             }
-        } else if (requestCode == REQUEST_CODE_EXCLUIR_PRODUTO && resultCode == RESULT_CODE_EXCLUIR_PRODUTO) {
+        } else if (requestCode == REQUEST_CODE_EDITAR_PRODUTO && resultCode == RESULT_CODE_EXCLUIR_PRODUTO) {
             Produto produtoExcluido = (Produto) data.getExtras().getSerializable("produtoExcluido");
-            this.adapterProdutos.remove(produtoExcluido);
+            for (int i = 0; i < adapterProdutos.getCount(); i++) {
+                Produto produto = adapterProdutos.getItem(i);
+                if (produto.getId() != produtoExcluido.getId()) {
+                    adapterProdutos.remove(produto);
+                    break;
+                } else {
+                    Toast.makeText(MainActivity.this, "if nok", Toast.LENGTH_LONG).show();
+                }
+            }
+            super.onActivityResult(requestCode, resultCode, data);
         }
-        super.onActivityResult(requestCode, resultCode, data);
     }
 }
