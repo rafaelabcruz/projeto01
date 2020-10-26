@@ -19,8 +19,6 @@ import br.senai.sc.projeto01.modelo.Produto;
 
 public class MainActivity extends AppCompatActivity {
 
-    private final int REQUEST_CODE_NOVO_PRODUTO = 1;
-    private final int RESULT_CODE_NOVO_PRODUTO = 10;
     private final int REQUEST_CODE_EDITAR_PRODUTO = 2;
     private final int RESULT_CODE_PRODUTO_EDITADO = 11;
     private final int RESULT_CODE_EXCLUIR_PRODUTO = 12;
@@ -101,14 +99,14 @@ public class MainActivity extends AppCompatActivity {
             }
         } else if (requestCode == REQUEST_CODE_EDITAR_PRODUTO && resultCode == RESULT_CODE_EXCLUIR_PRODUTO) {
                 Produto produtoExcluido = (Produto) data.getExtras().getSerializable("produtoExcluido");
-                for (int i = 0; i < adapterProdutos.getCount(); i++) {
-                    Produto produto = adapterProdutos.getItem(i);
-                    if (produto.getId() == produtoExcluido.getId()) {
-                        adapterProdutos.remove(produto);
-                        break;
+              for (int i = 0; i < adapterProdutos.getCount(); i++) {
+                Produto produto = adapterProdutos.getItem(i);
+                if (produto.getId() == produtoExcluido.getId()) {
+                  adapterProdutos.remove(produto);
+                break;
                     }
-                }
+              }
                 super.onActivityResult(requestCode, resultCode, data);
-            }
         }
     }
+}
