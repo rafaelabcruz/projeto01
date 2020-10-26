@@ -16,6 +16,11 @@ public class Produto implements Serializable {
         this.valor = valor;
     }
 
+    public Produto(String nome, Float valor) {
+        this.nome = nome;
+        this.valor = valor;
+    }
+
     public int getId() {
 
         return id;
@@ -43,13 +48,11 @@ public class Produto implements Serializable {
     }
 
 
-
-
-
     @NonNull
     @Override
     public String toString() {
-        return nome + " - " + "R$" + valor;
+
+        return id + " - " + nome + " - " + "R$" + valor;
     }
 }
 
