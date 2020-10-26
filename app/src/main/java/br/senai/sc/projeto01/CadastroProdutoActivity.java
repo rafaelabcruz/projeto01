@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.BaseColumns;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import br.senai.sc.projeto01.database.ProdutoDAO;
 import br.senai.sc.projeto01.modelo.Produto;
 
 public class CadastroProdutoActivity extends AppCompatActivity {
@@ -61,11 +63,15 @@ public class CadastroProdutoActivity extends AppCompatActivity {
             intent.putExtra("produtoEditado", produto);
             setResult(RESULT_CODE_PRODUTO_EDITADO, intent);
         } else {
-            intent.putExtra("novoProduto", produto);
-            setResult(RESULT_CODE_NOVO_PRODUTO, intent);
+            ProdutoDAO produtoDao = new ProdutoDAO(getBaseContext());
+            boolean salvou = produtoDao.salvar(produto);
+            if (salvou){
+                Toast.makeText(CadastroProdutoActivity.this, "salvou", Toast.LENGTH_LONG).show();
+                finish();
+            } else {
+                Toast.makeText(CadastroProdutoActivity.this, "Erro ao salvar", Toast.LENGTH_LONG).show();
+            }
         }
-
-        finish();
     }
 
     public void onClickExcluir(View v){
@@ -89,6 +95,7 @@ public class CadastroProdutoActivity extends AppCompatActivity {
         finish();
 
     }
+
 }
 
 
