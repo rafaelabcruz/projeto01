@@ -13,8 +13,7 @@ import br.senai.sc.projeto01.database.ProdutoDAO;
 import br.senai.sc.projeto01.modelo.Produto;
 
 public class CadastroProdutoActivity extends AppCompatActivity {
-
-    private final int RESULT_CODE_NOVO_PRODUTO = 10;
+    
     private final int RESULT_CODE_PRODUTO_EDITADO = 11;
     private final int RESULT_CODE_EXCLUIR_PRODUTO = 12;
 
@@ -65,8 +64,7 @@ public class CadastroProdutoActivity extends AppCompatActivity {
         } else {
             ProdutoDAO produtoDao = new ProdutoDAO(getBaseContext());
             boolean salvou = produtoDao.salvar(produto);
-            if (salvou){
-                Toast.makeText(CadastroProdutoActivity.this, "salvou", Toast.LENGTH_LONG).show();
+            if (salvou) {
                 finish();
             } else {
                 Toast.makeText(CadastroProdutoActivity.this, "Erro ao salvar", Toast.LENGTH_LONG).show();

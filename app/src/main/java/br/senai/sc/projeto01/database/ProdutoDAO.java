@@ -11,6 +11,7 @@ public class ProdutoDAO {
     private DBGateway dbGateway;
 
     public ProdutoDAO(Context context){
+
         dbGateway = DBGateway.getInstance(context);
     }
 

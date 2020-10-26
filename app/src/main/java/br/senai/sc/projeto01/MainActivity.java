@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-       if (requestCode == REQUEST_CODE_EDITAR_PRODUTO && resultCode == RESULT_CODE_PRODUTO_EDITADO) {
+        if (requestCode == REQUEST_CODE_EDITAR_PRODUTO && resultCode == RESULT_CODE_PRODUTO_EDITADO) {
             Produto produtoEditado = (Produto) data.getExtras().getSerializable("produtoEditado");
             for (int i = 0; i < adapterProdutos.getCount(); i++) {
                 Produto produto = adapterProdutos.getItem(i);
@@ -100,15 +100,15 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         } else if (requestCode == REQUEST_CODE_EDITAR_PRODUTO && resultCode == RESULT_CODE_EXCLUIR_PRODUTO) {
-            Produto produtoExcluido = (Produto) data.getExtras().getSerializable("produtoExcluido");
-            for (int i = 0; i < adapterProdutos.getCount(); i++) {
-                Produto produto = adapterProdutos.getItem(i);
-                if (produto.getId() == produtoExcluido.getId()) {
-                    adapterProdutos.remove(produto);
-                    break;
+                Produto produtoExcluido = (Produto) data.getExtras().getSerializable("produtoExcluido");
+                for (int i = 0; i < adapterProdutos.getCount(); i++) {
+                    Produto produto = adapterProdutos.getItem(i);
+                    if (produto.getId() == produtoExcluido.getId()) {
+                        adapterProdutos.remove(produto);
+                        break;
+                    }
                 }
+                super.onActivityResult(requestCode, resultCode, data);
             }
-            super.onActivityResult(requestCode, resultCode, data);
         }
     }
-}
